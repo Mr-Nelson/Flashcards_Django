@@ -51,10 +51,15 @@ class FlashcardDetails(APIView):
         except Flashcard.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk):
+
+    def put(self, request, pk):
         flashcard_id = self.get_by_id(pk)
-        serializer = FlashcardSerializer(flashcard_id)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        updateFlashcard = FlashcardSerializer(flashcard_id, data=request.data, partial=True)
+        if updateFlashcard.is_valid():
+            updateFlashcard.save()
+            return Response(updateFlashcard.data, status=status.HTTP_202_ACCEPTED)
+        return Response(updateFlashcard.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+
 
     def delete(self, request, pk):
         flashcard_id = self.get_by_id(pk)
