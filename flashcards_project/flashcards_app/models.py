@@ -14,4 +14,4 @@ class Flashcard(models.Model):
     collectionId = models.ForeignKey(Collection, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.question
+        return self.collectionId
