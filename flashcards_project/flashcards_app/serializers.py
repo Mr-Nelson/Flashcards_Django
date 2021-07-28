@@ -5,10 +5,10 @@ from .models import Collection, Flashcard
 class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Collection
-        fields = ['name']
+        fields = ['id', 'name']
 
 
 class FlashcardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flashcard
-        fields = ['question', 'answer', 'collection']
+        fields = ['id', 'question', 'answer', 'collectionId']

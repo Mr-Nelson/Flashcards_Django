@@ -1,5 +1,4 @@
 from django.http import Http404
-from django.shortcuts import render
 from .models import Collection, Flashcard
 from .serializers import CollectionSerializer, FlashcardSerializer
 from rest_framework.views import APIView

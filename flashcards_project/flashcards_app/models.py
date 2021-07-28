@@ -11,7 +11,7 @@ class Collection(models.Model):
 class Flashcard(models.Model):
     question = models.TextField(max_length=300)
     answer = models.TextField(max_length=300)
-    collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
+    collectionId = models.ForeignKey(Collection, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.question
