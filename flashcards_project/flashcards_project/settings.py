@@ -96,6 +96,6 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL=True
 
 try:
-    flashcards_project.local_settings import *
+    from flashcards_project.local_settings import *
 except ImportError:
     pass
