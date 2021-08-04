@@ -47,14 +47,17 @@ class CreateFlashcard(APIView):
 
 class FlashcardDetails(APIView):
 
-    def get_by_id(self, pk):
+    def get(self,request, pk):
+        print(pk)
         try:
-            return Flashcard.objects.get(pk=pk)
+            flashcard = Flashcard.objects.get(pk=pk)
+            newthing = FlashcardSerializer(flashcard)
+            return Response(newthing.data)
         except Flashcard.DoesNotExist:
             raise Http404
 
     def put(self, request, pk):
-        flashcard_id = self.get_by_id(pk)
+        flashcard_id = Flashcard.objects.get(pk=pk)
         updateFlashcard = FlashcardSerializer(flashcard_id, data=request.data, partial=True)
         if updateFlashcard.is_valid():
             updateFlashcard.save()
